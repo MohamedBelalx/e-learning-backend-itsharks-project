@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'is_active' => $this->faker->boolean(90), // 90% chance of being true
             'email_verified_at' => $this->faker->randomElement([now(), null]),
             'password' => bcrypt('password'), // Default password for all users or use bcrypt($this->faker->password)
-            'rememberToken' => Str::random(10),
+            // 'rememberToken' => Str::random(10),
         ];
     }
 
