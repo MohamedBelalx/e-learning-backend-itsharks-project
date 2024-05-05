@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ReviewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/category', [CategoryController::class, 'all']);
 Route::get('/course', [CourseController::class, 'all']);
 Route::get('/user', [UsersController::class, 'all']);
+Route::get('/review', [ReviewsController::class, 'all']);
