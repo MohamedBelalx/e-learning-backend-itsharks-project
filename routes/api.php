@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CourseController;
@@ -22,7 +23,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group([
 
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('/login', [AuthController::class, 'login']);
+    // Route::post('logout', [AuthController::class, 'logout']);
+    // Route::post('refresh', AuthController::class, 'refresh');
+    // Route::post('me', [AuthController::class, 'me']);
+});
 Route::get('/category', [CategoryController::class, 'all']);
 Route::get('/course', [CourseController::class, 'all']);
 Route::get('/user', [UsersController::class, 'all']);
