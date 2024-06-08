@@ -51,19 +51,26 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('role') }}</label>
+                    <div class="row mb-3">
+                             <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                <input id="role" type="role" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autocomplete="role">
+                                <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required autocomplete="role">
+                                    <option value="">Select Role</option> <!-- Provides a default prompt -->
+                                    <option value="Teacher" {{ old('role') == 'Teacher' ? 'selected' : '' }}>Teacher</option>
+                                    <option value="Student" {{ old('role') == 'Student' ? 'selected' : '' }}>Student</option>
+                                    <option value="Teacher Assistant" {{ old('role') == 'Teacher Assistant' ? 'selected' : '' }}>Teacher Assistant</option>
+                                    <option value="Admin" {{ old('role') == 'Admin' ? 'selected' : '' }}>Admin</option>
+                                </select>
 
                                 @error('role')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
-                            </div>
-                        </div>
+                     </div>
+                    </div>
+
                         <div class="row mb-3">
                             <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('phone') }}</label>
 

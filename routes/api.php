@@ -31,4 +31,9 @@ Route::post('/categories', [CategoryController::class, 'store']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
 Route::put('/categories/{id}', [CategoryController::class, 'update']);
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+Route::post('/courses', [CourseController::class, 'store']);
+Route::get('/courses/{id}', [CourseController::class, 'show']);
+Route::put('/courses/{id}', [CourseController::class, 'update']);
+Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
+
 
