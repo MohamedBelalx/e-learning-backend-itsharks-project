@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ReviewsController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,9 +46,19 @@ Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 
 
 // Users Routes // 
+
 Route::get('/user', [UsersController::class, 'all']);
 Route::post('/users', [UsersController::class, 'store']);
 Route::get('/users/{id}', [UsersController::class, 'show']);
 Route::put('/users/{id}', [UsersController::class, 'update']);
 Route::delete('/users/{id}', [UsersController::class, 'destroy']);
+
+
+// Quizes Routes // 
+
+Route::get('/quizzes', [QuizController::class, 'all']);
+Route::post('/quizzes', [QuizController::class, 'store']);
+Route::get('/quizzes/{id}', [QuizController::class, 'show']);
+Route::put('/quizzes/{id}', [QuizController::class, 'update']);
+Route::delete('/quizzes/{id}', [QuizController::class, 'destroy']);
 
