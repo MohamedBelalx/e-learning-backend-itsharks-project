@@ -23,7 +23,31 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/category', [CategoryController::class, 'all']);
-Route::get('/course', [CourseController::class, 'all']);
-Route::get('/user', [UsersController::class, 'all']);
+
+
 Route::get('/review', [ReviewsController::class, 'all']);
+
+// Category routes // 
+
+Route::get('/categories', [CategoryController::class, 'all']);
+Route::post('/categories', [CategoryController::class, 'store']);
+Route::get('/categories/{id}', [CategoryController::class, 'show']);
+Route::put('/categories/{id}', [CategoryController::class, 'update']);
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+
+// courses routes // 
+
+Route::get('/course', [CourseController::class, 'all']);
+Route::post('/courses', [CourseController::class, 'store']);
+Route::get('/courses/{id}', [CourseController::class, 'show']);
+Route::put('/courses/{id}', [CourseController::class, 'update']);
+Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
+
+
+// Users Routes // 
+Route::get('/user', [UsersController::class, 'all']);
+Route::post('/users', [UsersController::class, 'store']);
+Route::get('/users/{id}', [UsersController::class, 'show']);
+Route::put('/users/{id}', [UsersController::class, 'update']);
+Route::delete('/users/{id}', [UsersController::class, 'destroy']);
+

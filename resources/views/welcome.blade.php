@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <<meta name="Home-page" content="Markting-SEO-Media-buying">
 
     <title>Laravel</title>
 
