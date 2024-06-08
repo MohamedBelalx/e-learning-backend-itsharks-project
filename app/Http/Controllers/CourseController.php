@@ -26,7 +26,7 @@ class CourseController extends Controller
             'teacher_id' => 'required|integer|exists:users,id',
             'category_id' => 'required|integer|exists:categories,id'
         ]);
-    
+
         $course = Course::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -37,71 +37,71 @@ class CourseController extends Controller
             'teacher_id' => $request->teacher_id,
             'category_id' => $request->category_id
         ]);
-    
+
         return response()->json([
             'message' => 'Course created successfully',
             'data' => $course
         ], 201);
     }
-    
+
 
     // Review course function // 
 
     public function show($id)
     {
         $course = Course::find($id);
-    
+
         if (!$course) {
             return response()->json(['message' => 'Course not found'], 404);
         }
-    
+
         return response()->json($course);
     }
-    
 
-     // update course function // 
 
-     public function update(Request $request, $id)
-{
-    $request->validate([
-        'title' => 'string|max:255',
-        'description' => 'string',
-        'duration' => 'integer',
-        'is_approved' => 'boolean',
-        'price' => 'numeric',
-        'lang' => 'string|max:10',
-        'teacher_id' => 'integer|exists:users,id',
-        'category_id' => 'integer|exists:categories,id'
-    ]);
+    // update course function // 
 
-    $course = Course::find($id);
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'string|max:255',
+            'description' => 'string',
+            'duration' => 'integer',
+            'is_approved' => 'boolean',
+            'price' => 'numeric',
+            'lang' => 'string|max:10',
+            'teacher_id' => 'integer|exists:users,id',
+            'category_id' => 'integer|exists:categories,id'
+        ]);
 
-    if (!$course) {
-        return response()->json(['message' => 'Course not found'], 404);
+        $course = Course::find($id);
+
+        if (!$course) {
+            return response()->json(['message' => 'Course not found'], 404);
+        }
+
+        $course->update($request->all());
+
+        return response()->json([
+            'message' => 'Course updated successfully',
+            'data' => $course
+        ]);
     }
 
-    $course->update($request->all());
+    // delete course function // 
 
-    return response()->json([
-        'message' => 'Course updated successfully',
-        'data' => $course
-    ]);
-}
+    public function destroy($id)
+    {
+        $course = Course::find($id);
 
-      // delete course function // 
+        if (!$course) {
+            return response()->json(['message' => 'Course not found'], 404);
+        }
 
-      public function destroy($id)
-      {
-          $course = Course::find($id);
-      
-          if (!$course) {
-              return response()->json(['message' => 'Course not found'], 404);
-          }
-      
-          $course->delete();
-      
-          return response()->json(['message' => 'Course deleted successfully']);
-      }
-      
+        $course->delete();
+
+        return response()->json(['message' => 'Course deleted successfully']);
+    }
+
 
 }
