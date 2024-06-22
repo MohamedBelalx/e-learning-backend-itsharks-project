@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
-    use HasFactory;
+    protected $fillable = ['teacher_id', 'course_id', 'title', 'qustion', 'score'];
 }

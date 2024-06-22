@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->json('qustion');
             $table->timestamps();
+            $table->integer('score')->after('qustion')->nullable();
         });
     }
 

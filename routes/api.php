@@ -5,6 +5,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -61,4 +63,22 @@ Route::post('/quizzes', [QuizController::class, 'store']);
 Route::get('/quizzes/{id}', [QuizController::class, 'show']);
 Route::put('/quizzes/{id}', [QuizController::class, 'update']);
 Route::delete('/quizzes/{id}', [QuizController::class, 'destroy']);
+
+
+// Ticket routes //
+
+Route::get('/tickets', [TicketController::class, 'index']);
+Route::post('/tickets', [TicketController::class, 'store']);
+Route::get('/tickets/{ticket}', [TicketController::class, 'show']);
+Route::put('/tickets/{ticket}', [TicketController::class, 'update']);
+Route::delete('/tickets/{ticket}', [TicketController::class, 'destroy']);
+
+
+// Payment Routes
+
+Route::get('/payments', [PaymentController::class, 'index']);
+Route::post('/payments', [PaymentController::class, 'store']);
+Route::get('/payments/{payment}', [PaymentController::class, 'show']);
+Route::put('/payments/{payment}', [PaymentController::class, 'update']);
+Route::delete('/payments/{payment}', [PaymentController::class, 'destroy']);
 
