@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use DB;
 
 class CourseController extends Controller
 {
@@ -131,6 +132,43 @@ class CourseController extends Controller
         }
 
         $courses = $query->with('category', 'teacher')->get();
+
+        return response()->json($courses);
+    }
+
+    // Filter function //
+
+    public function filter(Request $request)
+    {
+        $query = Course::query();
+
+        $query->with('category', 'teacher');
+
+        if ($request->filled('duration')) {
+            $query->where('duration', '=', $request->duration);
+        }
+
+        if ($request->filled('is_approved')) {
+            $query->where('is_approved', $request->is_approved === 'true');
+        }
+
+        if ($request->filled('price')) {
+            $query->where('price', '=', $request->price);
+        }
+
+        if ($request->filled('lang')) {
+            $query->where('lang', '=', $request->lang);
+        }
+
+        if ($request->filled('min_review_score')) {
+            $query->whereHas('reviews', function ($subQuery) use ($request) {
+                $subQuery->select('course_id')
+                         ->groupBy('course_id')
+                         ->havingRaw('AVG(score) >= ?', [$request->min_review_score]);
+            });
+        }
+
+        $courses = $query->get();
 
         return response()->json($courses);
     }

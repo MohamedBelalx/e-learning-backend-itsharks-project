@@ -9,4 +9,10 @@ class Course extends Model
 {
     use HasFactory;
     protected $table = 'course';
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'course_id');
+    }
+
 }
