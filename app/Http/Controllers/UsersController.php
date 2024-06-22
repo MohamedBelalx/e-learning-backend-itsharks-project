@@ -104,4 +104,27 @@ class UsersController extends Controller
     }
 
 
+
+
+    public function search(Request $request)
+    {
+        $query = User::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        if ($request->filled('location')) {
+            $query->where('location', 'like', '%' . $request->location . '%');
+        }
+
+        if ($request->filled('phone')) {
+            $query->where('phone', 'like', '%' . $request->phone . '%');
+        }
+
+        $users = $query->get();
+
+        return response()->json($users);
+    }
+
 }

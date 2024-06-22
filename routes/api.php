@@ -97,6 +97,12 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);
 
 
 
-// Search Route
 
-Route::get('/search', [SearchController::class, 'index'])->name('search');
+// Users Search // 
+
+Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
+
+
+// courses search //
+
+Route::get('/courses/search', [CourseController::class, 'search'])->name('courses.search');
