@@ -7,6 +7,7 @@ use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -82,3 +83,12 @@ Route::get('/payments/{payment}', [PaymentController::class, 'show']);
 Route::put('/payments/{payment}', [PaymentController::class, 'update']);
 Route::delete('/payments/{payment}', [PaymentController::class, 'destroy']);
 
+
+// Review Routes
+
+Route::get('/reviews', [ReviewController::class, 'index']);    
+Route::post('/reviews', [ReviewController::class, 'store']);   
+Route::get('/reviews/{review}', [ReviewController::class, 'show']);    
+Route::put('/reviews/{review}', [ReviewController::class, 'update']);  
+Route::patch('/reviews/{review}', [ReviewController::class, 'update']);  
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);  
