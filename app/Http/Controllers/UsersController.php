@@ -104,7 +104,7 @@ class UsersController extends Controller
     }
 
 
-
+      // Search Function // 
 
     public function search(Request $request)
     {
@@ -127,4 +127,27 @@ class UsersController extends Controller
         return response()->json($users);
     }
 
+
+    // Filter Function //
+
+    public function filter(Request $request)
+    {
+        $query = User::query();
+
+        if ($request->filled('role')) {
+            $query->where('role', $request->role);
+        }
+
+        if ($request->filled('is_active')) {
+            $query->where('is_active', $request->is_active === 'true' ? true : false);
+        }
+
+        if ($request->filled('location')) {
+            $query->where('location', 'like', '%' . $request->location . '%');
+        }
+
+        $users = $query->get();
+
+        return response()->json($users);
+    }
 }
