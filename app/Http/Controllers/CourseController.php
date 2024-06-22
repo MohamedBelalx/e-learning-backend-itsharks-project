@@ -104,4 +104,37 @@ class CourseController extends Controller
     }
 
 
+    // search function //
+
+    public function search(Request $request)
+    {
+        $query = Course::query();
+
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+
+        if ($request->filled('price')) {
+            $query->where('price', $request->price);
+        }
+
+        if ($request->filled('category')) {
+            $query->whereHas('category', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->category . '%');
+            });
+        }
+
+        if ($request->filled('teacher')) {
+            $query->whereHas('teacher', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->teacher . '%');
+            });
+        }
+
+        $courses = $query->with('category', 'teacher')->get();
+
+        return response()->json($courses);
+    }
 }
+
+
+

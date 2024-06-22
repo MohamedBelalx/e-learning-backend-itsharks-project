@@ -8,6 +8,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -92,3 +93,16 @@ Route::get('/reviews/{review}', [ReviewController::class, 'show']);
 Route::put('/reviews/{review}', [ReviewController::class, 'update']);  
 Route::patch('/reviews/{review}', [ReviewController::class, 'update']);  
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);  
+
+
+
+
+
+// Users Search // 
+
+Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
+
+
+// courses search //
+
+Route::get('/courses/search', [CourseController::class, 'search'])->name('courses.search');
